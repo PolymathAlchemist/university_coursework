@@ -71,13 +71,13 @@ FULL_NAME_ERROR: Final[str] = (
 
 CREDITS_INPUT: Final[str] = (
     "Please enter the number of credits for the course.\n"
-    "1, 2, 3, 4, 5, 6, 7 ,8 ,or 9: "
+    "1 through 99: "
 )
 
-CREDITS_RE: Final[re.Pattern[str]] = re.compile(r"^[1-9]d?$")
+CREDITS_RE: Final[re.Pattern[str]] = re.compile(r"^[1-9]\d?$")
 
 CREDITS_ERROR: Final[str] = (
-    "Only whole values of 1, 2, 3, 4, 5, 6, 7, 8, or 9 are accepted."
+    "Only whole values from 1 to 99 are accepted."
 )
 
 GRADE_INPUT: Final[str] = (
@@ -212,7 +212,8 @@ def get_data(
 
 def process_full_name(full_name) -> tuple[str, str]:
     """
-    Process full name input splitting it into first and last name
+    Process full name input splitting it into first and last name.
+
     Parameters
     ----------
     full_name
@@ -266,7 +267,7 @@ def build_credit_load_and_grades(student1: Student) -> None:
 
 def main() -> None:
     """
-    Main program loop to get a student name, gather credit loads
+    Main program loop to get a student's name, gather credit loads
     and letter grades, calculate the GPA, and display the results.
     """
     print(INTRO_MESSAGE)
