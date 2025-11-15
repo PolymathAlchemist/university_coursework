@@ -260,6 +260,8 @@ class ProgramData:
 INTRO_MESSAGE: Final[str] = (
     "Welcome to 'Grade-E-us' the GPA calculator!\n"
     "Follow the instructions and I will give the student's GPA!\n"
+    "Enter now and I will divulge their credit load, what year they are and\n"
+    "their area of academic concentration."
 )
 
 FULL_NAME_INPUT: Final[str] = (
@@ -285,14 +287,14 @@ FULL_NAME_RE: Final[re.Pattern[str]] = re.compile(
 
 FULL_NAME_ERROR: Final[str] = (
     "Both first and last name are required. First letter of names must be "
-    "capitalized.\n Only letters, apostrophes ('), periods (.), "
-    "and hyphens (-) are accepted.\n"
-    "Middle initials are fine, but must be followed by a period."
+    "capitalized. Only letters, apostrophes ('), periods (.), "
+    "and hyphens (-) are accepted. "
+    "Middle initials are fine, but must be followed by a period. "
+    "Single space between names."
 )
 
 CREDITS_INPUT: Final[str] = (
-    "Please enter the number of credits for the course.\n"
-    "1-99: "
+    "Please enter the number of credits for the course. 1-99: "
 )
 
 CREDITS_RE: Final[re.Pattern[str]] = re.compile(r"^[1-9]\d?$")
@@ -302,8 +304,7 @@ CREDITS_ERROR: Final[str] = (
 )
 
 GRADE_INPUT: Final[str] = (
-    "Please enter the letter grade for the course.\n"
-    "(A, B, C, D, or F): "
+    "Please enter the letter grade for the course. (A, B, C, D, or F): "
 )
 
 GRADE_RE: Final[re.Pattern[str]] = re.compile(r"^[ABCDF]$", re.IGNORECASE)
@@ -731,7 +732,10 @@ def get_data(
                     raise ValueError(error_message)
                 return value
             except ValueError as error:
-                print(f"{'!'*79}\n{error}\n{'!'*79}")
+                print(textwrap.fill(
+                    f"{'!'*79}\n{error}\n{'!'*79}",
+                    width=79
+                ))
 
         # ----------------------------------------------------------------
         # Case 2: Collection of Strings
@@ -767,7 +771,10 @@ def get_data(
                             continue
                     raise ValueError(error_message)
                 except ValueError as error:
-                    print(f"{'!'*79}\n{error}\n{'!'*79}")
+                    print(textwrap.fill(
+                    f"{'!'*79}\n{error}\n{'!'*79}",
+                    width=79
+                ))
 
         # ----------------------------------------------------------------
         # Case 3: Dictionary
@@ -799,7 +806,10 @@ def get_data(
                             continue
                     raise ValueError(error_message)
                 except ValueError as error:
-                    print(f"{'!'*79}\n{error}\n{'!'*79}")
+                    print(textwrap.fill(
+                    f"{'!'*79}\n{error}\n{'!'*79}",
+                    width=79
+                ))
 
         # ----------------------------------------------------------------
         # Fall-through Case: Unexpected match_pattern
