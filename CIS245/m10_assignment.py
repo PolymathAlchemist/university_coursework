@@ -130,6 +130,7 @@ class Student:
             case _:
                 raise ValueError(f"Invalid grade: {letter_grade}")
 
+
     def get_grade_point_average(self) -> float:
         """
         Calculate the student's cumulative GPA.
@@ -145,8 +146,10 @@ class Student:
             return 0.0
         return round(self.grade_points / self.credit_load, 2)
 
+
     def get_credit_load(self) -> int:
         return self.credit_load
+
 
     def get_student_year(self) -> str:
         """
