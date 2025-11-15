@@ -208,6 +208,7 @@ class DeclaredStudent(Student):
         )
         self.concentration = concentration
 
+
     def get_concentration(self) -> str:
         return self.concentration
 
