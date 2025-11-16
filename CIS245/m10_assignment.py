@@ -212,6 +212,22 @@ class DeclaredStudent(Student):
     def get_concentration(self) -> str:
         return self.concentration
 
+    def get_concentration_expanded(self) -> str:
+        """
+        gives a sentence snippet based on the concentration value
+            instead of just the raw concentration value.
+
+        Returns
+        -------
+        str: returns one of two wtrings better desribing the concentration.
+
+        """
+        if self.concentration == "NA":
+            return "whose concentration is currently undeclared"
+        else:
+
+            return f"who is concentrating on {self.concentration}"
+
 
 class Degree(Enum):
     """Supported academic degree abbreviations."""
@@ -904,18 +920,14 @@ def main() -> None:
         concentration
     )
     build_credit_load_and_grades(student1)
-    if concentration == "NA":
-        message_tail = "whose concentration is currently undeclared"
-    else:
-        message_tail = (
-            f"who is concentrating on {student1.get_concentration()}"
-        )
+
     print(textwrap.fill(
         f"{'='*79}\n{student1.first_name} {student1.last_name} "
         f"has completed a total of {student1.get_credit_load()} credits and "
         "received a grade point average (GPA) of "
         f"{student1.get_grade_point_average()}. They are a "
-        f"{student1.get_student_year()} student {message_tail}."
+        f"{student1.get_student_year()} student "
+        f"{student1.get_concentration_expanded()}."
         , width=79)
     )
 
