@@ -267,9 +267,9 @@ def ensure_requests_installed():
             print("Successfully installed 'requests'.")
             import requests
             return requests
-        except Exception as e:
+        except Exception as error:
             print("Failed to install 'requests'.")
-            print("Error:", e)
+            print("Error:", error)
             sys.exit(1)
 
 
